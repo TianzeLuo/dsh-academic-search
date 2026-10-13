@@ -1,0 +1,42 @@
+{
+  "name": "dsh-academic-search",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DSH plugin: CS/AI 学术检索 — 多源召回、论文身份归并、有界引用链与 arXiv 原文交接。按项目开启（默认关闭）。",
+  "type": "module",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "files": [
+    "lib",
+    "skills",
+    "bin",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "academic",
+    "arxiv",
+    "openalex",
+    "literature-search"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": [
+        "./cordis.patch.yml"
+      ]
+    }
+  }
+}

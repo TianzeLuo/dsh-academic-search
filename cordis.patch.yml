@@ -1,0 +1,24 @@
+# dsh-academic-search bundle patch —— profile 根层。
+#
+# 这一行只做一件事：把这个包挂进 profile。它**不注册任何模型可见的东西**——
+# 六个工具与 academic-research 技能都是在 `agent/created` 时按项目配置注册到
+# 那条 agent 自己的 scope 上的（见 lib/index.js）。所以插件装好之后，没有开启
+# 它的项目里既看不到工具、也看不到技能，不占任何上下文。
+#
+# `insert:` 行随包发布，`dsh plugin --profile web add <本包目录>` 会自动把它
+# 追加进该 profile 的 `dsh.profile.bundles`；**不要**再手写同 id 的 `- insert:`
+# （重复会报 duplicate loader entry id）。装完重启 `dsh web`。
+#
+# 需要改数据根时，在 profile 的 `cordis.patch.yml` 里按 id 覆盖，不要改这里：
+#
+#     - id: academic-search
+#       config:
+#         dataRoot: /abs/path
+
+- insert:
+    - id: academic-search
+      name: 'dsh-academic-search'
+      # 数据根默认是 <本包>/data/academic。也可以按项目覆盖，见
+      # <项目根>/.dsh/research.json 里的 plugins["academic-search"].dataRoot。
+      # 不要指到 ~/.dsh 下面：引擎的写入边界会拒绝。
+      config: {}

@@ -1,0 +1,6 @@
+# 只在包根忽略 node_modules：lib/engine/vendor/node_modules 是随包发布的
+# 运行时依赖（fast-xml-parser 及其传递依赖），必须入库，否则克隆/装机即坏。
+/node_modules/
+/data/
+*.log
+*.tgz
